@@ -14,9 +14,7 @@ function TagsInput({ tags, setTags, messages, setMessages }) {
       console.log(fetchedMessages);
     });
 
-    return () => {
-      socket.off('fetchedMessages');
-    };
+    return;
   }, []);
 
   const handleKeyDown = (e) => {
