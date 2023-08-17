@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import { InputText } from 'primereact/inputtext';
+
 import { Button } from 'primereact/button';
 import { Timeline } from 'primereact/timeline';
 import { io } from 'socket.io-client';
-import TagsInput from './TagsInput'; // Import TagsInput component
+import TagsInput from './TagsInput';
 
 const socket = io('https://chat-x360.onrender.com');
 
@@ -18,7 +18,6 @@ function Chat({ setMessages, messages }) {
   const [tagMessages, setTagMessages] = useState({});
 
   socket.on('fetchedMessages', (fetchedMessages) => {
-    // Group messages by tags
     const messagesByTags = {};
     fetchedMessages.forEach((message) => {
       if (message.tags && typeof message.tags === 'string') {

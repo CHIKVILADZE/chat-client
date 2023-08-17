@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
-const socket = io('https://chat-x360.onrender.com'); // Replace with your actual backend domain
+const socket = io('https://chat-x360.onrender.com');
 
 function TagsInput({ tags, setTags, messages, setMessages }) {
   const [value, setValue] = useState('');
   const [tagInput, setTagInput] = useState('');
 
   useEffect(() => {
-    // Fetch messages from the database when the component mounts
     socket.emit('fetchMessages');
     socket.on('fetchedMessages', (fetchedMessages) => {
       setMessages(fetchedMessages);
       console.log(fetchedMessages);
     });
 
-    // Clean up event listener when component unmounts
     return () => {
       socket.off('fetchedMessages');
     };
@@ -67,10 +65,9 @@ function TagsInput({ tags, setTags, messages, setMessages }) {
             value={value}
             onChange={(e) => {
               setValue(e.target.value);
-              setTagInput(e.target.value); // Update the tagInput while searching
+              setTagInput(e.target.value);
             }}
           />
-          <button onClick={() => onSearch(value)}>Search</button>
         </div>
         <div className="dropdown">
           {messages
@@ -81,7 +78,7 @@ function TagsInput({ tags, setTags, messages, setMessages }) {
               <div
                 className="dropdown-row"
                 onClick={() => {
-                  setTagInput(message.message); // Set the selected message as tagInput
+                  setTagInput(message.message);
                   onSearch(message.message);
                 }}
                 key={index}
