@@ -8,7 +8,7 @@ import { Timeline } from 'primereact/timeline';
 import { io } from 'socket.io-client';
 import TagsInput from './TagsInput';
 
-const socket = io('https://chat-server-l3ck.onrender.com/');
+const socket = io('https://chat-server-l3ck.onrender.com');
 
 function Chat({ setMessages, messages }) {
   const [author, setAuthor] = useState('');
@@ -16,6 +16,15 @@ function Chat({ setMessages, messages }) {
   const [tags, setTags] = useState([]);
 
   const [tagMessages, setTagMessages] = useState({});
+  useEffect(() => {
+    socket.emit('fetchMessages');
+    socket.on('fetchedMessages', (fetchedMessages) => {
+      setMessages(fetchedMessages);
+      console.log(fetchedMessages);
+    });
+
+    return messages;
+  }, []);
 
   socket.on('fetchedMessages', (fetchedMessages) => {
     const messagesByTags = {};
