@@ -15,7 +15,7 @@ function TagsInput({ tags, setTags, messages, setMessages }) {
     });
 
     return () => {
-      socket.off('fetchedMessages');
+      socket.off('fetchedMessages', messages);
     };
   }, []);
 
