@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Chat from './components/chat';
 
 function App() {
+  const [tags, setTags] = useState([]);
+  const [messages, setMessages] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Chat
+        tags={tags}
+        setTags={setTags}
+        messages={messages}
+        setMessages={setMessages}
+      />
     </div>
   );
 }
