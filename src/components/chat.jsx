@@ -8,7 +8,7 @@ import { Timeline } from 'primereact/timeline';
 import { io } from 'socket.io-client';
 import TagsInput from './TagsInput'; // Import TagsInput component
 
-const socket = io('http://localhost:3001');
+const socket = io('https://localhost:3001');
 
 function Chat({ setMessages, messages }) {
   const [author, setAuthor] = useState('');
