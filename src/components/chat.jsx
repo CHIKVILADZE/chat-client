@@ -8,7 +8,7 @@ import { Timeline } from 'primereact/timeline';
 import { io } from 'socket.io-client';
 import TagsInput from './TagsInput';
 
-const socket = io('https://chat-server-l3ck.onrender.com');
+const socket = io('https://service-chat-1jal.onrender.com/');
 
 function Chat({ setMessages, messages }) {
   const [author, setAuthor] = useState('');
