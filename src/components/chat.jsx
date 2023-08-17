@@ -66,7 +66,7 @@ function Chat({ setMessages, messages }) {
       </div>
       <div className="card">
         <Timeline
-          value={tagMessages}
+          value={messages}
           opposite={(item) => item.author}
           content={(item) => (
             <small className="p-text-secondary">{item.message}</small>
